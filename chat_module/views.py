@@ -40,6 +40,7 @@ def signup(request):
 		password2 = request.POST.get("pass2")
 		myuser = User.objects.create_user(username=username, email=email, password=password1)
 		myuser.save()
+		messages.success(request, "Account Created Successfully")
 		return redirect("home")
 
 	else:
@@ -52,9 +53,11 @@ def handleLogin(request):
 		user = authenticate(username=username, password=password)
 		if user is not None:
 			login(request, user)
+			messages.success(request, "Logged In Successfully")
 			return redirect("home")
 		else:
-			return HttpResponse("Invalid Credentials")
+			messages.error(request, "Invalid Username or Password. Please Try Again.")
+			return redirect("home")
 
 	else:
 		return HttpResponse("404 Not Found")
@@ -62,6 +65,7 @@ def handleLogin(request):
 
 def logoutUser(request):
 	logout(request)
+	messages.success(request, "Account Logged Out Successfully")
 	return redirect("home")
 
 
