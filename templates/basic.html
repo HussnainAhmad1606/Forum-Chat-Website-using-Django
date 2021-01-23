@@ -13,9 +13,15 @@
       crossorigin="anonymous"
     />
     <style>
-      {% block css %}
-  
-  {% endblock %}
+#userControls {
+    margin-left: -60px;
+    margin-top: 5px;
+}
+
+{% block css %}
+
+{% endblock %}
+
     </style>
     <title>{% block title %}{% endblock %}</title>
   </head>
@@ -41,9 +47,17 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
           </ul>
-          {% if user.is_authenticated %}
-          <p style="color: white">logged in as: {{ request.user }}</p>
-          <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+           {% if user.is_authenticated %}
+          <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" style="color: white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Hi, {{ request.user }}
+          </a>
+          <ul class="dropdown-menu" id="userControls" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Profile Settings</a></li>
+          </ul>
+        </li>
           {% else %}
           <button type="button" class="mx-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup">
             Sign Up
