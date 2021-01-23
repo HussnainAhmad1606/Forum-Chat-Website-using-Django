@@ -30,11 +30,15 @@ input[type='text'] {
 </div>
 
 <section class="my-3 container" id="messageSection">
-
-            <label for="password" class="form-label">Write Your Message:</label>
-            <input type="text" class="form-control" id="message">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<label for="message" class="form-label">Write Your Name:</label>
+            <input type="text" name="user" class="form-control" id="user">
+            <br>
+            <label for="message" class="form-label">Write Your Message:</label>
+            <input type="text" name="message" class="form-control" id="message">
             <input type="submit" class="btn btn-outline-primary" value="Send">
-  
+        </form>
 </section>
 <div>
 	
