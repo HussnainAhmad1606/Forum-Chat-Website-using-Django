@@ -4,6 +4,11 @@
 
 {% block body %}
 <div class="my-4 container">
+  {% if user.is_authenticated %}
+  <h2>Hello, {{request.user}}</h2>
+  {% else %}
+  <h2>You are not logged In</h2>
+  {% endif %}
   <h1>Welcome to Pak Chat</h1>
   <p>A Community Built Specially for Pakistani Programmers to give them encourage and resources so that they can make their carrers in Programming and build some creative things</p>
   <h1>How to Use? </h1>

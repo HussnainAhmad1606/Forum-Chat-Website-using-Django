@@ -41,12 +41,17 @@
               <a class="nav-link active" aria-current="page" href="/">Home</a>
             </li>
           </ul>
+          {% if user.is_authenticated %}
+          <p style="color: white">logged in as: {{ request.user }}</p>
+          <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
+          {% else %}
           <button type="button" class="mx-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#signup">
             Sign Up
           </button>
           <button type="button" class="mx-2 btn btn-primary" data-bs-toggle="modal" data-bs-target="#login">
             Log In
           </button>
+          {% endif %}
         </div>
       </div>
     </nav>
@@ -63,7 +68,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="/signup" method="POST">
+          <form action="signup/" method="POST">
             {% csrf_token %}
             <div class="mb-3">
                 <label for="username" class="form-label">Username: </label>
@@ -86,7 +91,7 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Sign Up</button>
         </div>
-      </form>
+        </form>
       </div>
     </div>
   </div>
@@ -101,20 +106,21 @@
         </div>
         <div class="modal-body">
           <form action="" method="POST">
+            {% csrf_token %}
             <div class="mb-3">
                 <label for="username" class="form-label">Username: </label>
-                <input type="text" class="form-control" id="username">
+                <input type="text" name="username" class="form-control" id="username">
               </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password: </label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" name="password" class="form-control" id="password">
               </div>
           
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary">Log In</button>
-        </form>
+          </form>
         </div>
       </div>
     </div>

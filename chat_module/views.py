@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import message
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 
 from django.contrib.auth.models import User
 
@@ -38,4 +39,26 @@ def signup(request):
 
 	else:
 		return HttpResponse("404 Not Found")
+
+def login(request):
+	if request.method == "POST":
+		username = request.POST.get("username")
+		password = request.POST.get("password")
+		user = authenticate(username=username, password=password)
+		if user is not None:
+			login(request, user)
+			return redirect("home")
+		else:
+			return HttpResponse("Invalid Credentials")
+
+	else:
+		return HttpResponse("404 Not Found")
+
+
+def logoutUser(request):
+	logout(request)
+	return redirect("home")
+
+
+
 
