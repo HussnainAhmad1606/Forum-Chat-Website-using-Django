@@ -23,6 +23,10 @@ input[type='text'] {
 {% block body %}
 <div class="my-3 container">
 	<h1>Community Messages: </h1>
+	{% for message in messages %}
+	<h3>{{message.user}} at {{message.timestamp}}</h3>
+	<p>{{message.message}}</p>
+	{% endfor %}
 </div>
 
 <section class="my-3 container" id="messageSection">
