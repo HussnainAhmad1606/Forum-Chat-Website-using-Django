@@ -2,8 +2,37 @@
 
 {% block title %}Send Message - Pak Chat{% endblock %}
 
+{% block css %}
+input[type='text'], input[type='submit'] {
+	display: inline;
+	
+}
+input[type='text'] {
+	width: 70%
+}
+
+#messageSection {
+	margin-top: 90%;
+	display: fixed;
+	top: 0;
+
+}
+
+{% endblock %}
+
 {% block body %}
-<div class="container">
+<div class="my-3 container">
+	<h1>Community Messages: </h1>
+</div>
+
+<section class="my-3 container" id="messageSection">
+
+            <label for="password" class="form-label">Write Your Message:</label>
+            <input type="text" class="form-control" id="message">
+            <input type="submit" class="btn btn-outline-primary" value="Send">
+  
+</section>
+<div>
 	
 </div>
 {% endblock %}
