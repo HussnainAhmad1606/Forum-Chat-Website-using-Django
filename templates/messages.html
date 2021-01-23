@@ -22,10 +22,15 @@ input[type='text'] {
 
 {% block body %}
 <div class="my-3 container">
-	<h1>Community Messages: </h1>
+	<h1>Real-Time Chat with Friends: </h1>
 	{% for message in messages %}
-	<h3>{{message.user}} at {{message.timestamp}}</h3>
-	<p>{{message.message}}</p>
+	<div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+  <div class="card-header">{{ message.timestamp }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ message.user }}</h5>
+    <p class="card-text">{{ message.message }}</p>
+  </div>
+</div>
 	{% endfor %}
 </div>
 
