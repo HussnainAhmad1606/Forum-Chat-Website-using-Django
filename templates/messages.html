@@ -21,6 +21,7 @@ input[type='text'] {
 {% endblock %}
 
 {% block body %}
+{% if user.is_authenticated %}
 <div class="my-3 container">
 	<h1>Real-Time Chat with Friends: </h1>
 	{% for message in messages %}
@@ -37,8 +38,7 @@ input[type='text'] {
 <section class="my-3 container" id="messageSection">
 		<form action="" method="POST">
 			{% csrf_token %}
-			<label for="message" class="form-label">Write Your Name:</label>
-            <input type="text" name="user" class="form-control" id="user">
+            <input type="hidden" name="user" value="{{request.user}}" class="form-control" id="user">
             <br>
             <label for="message" class="form-label">Write Your Message:</label>
             <input type="text" name="message" class="form-control" id="message">
@@ -48,4 +48,9 @@ input[type='text'] {
 <div>
 	
 </div>
+{% else %}
+<div class="my-4 container">
+	<h1>You are not logged in. You have to log in to your account in order to show and send messages.</h1>
+</div>
+{% endif %}
 {% endblock %}
