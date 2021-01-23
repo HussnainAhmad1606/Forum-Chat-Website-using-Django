@@ -63,27 +63,30 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
+          <form action="/signup" method="POST">
+            {% csrf_token %}
             <div class="mb-3">
                 <label for="username" class="form-label">Username: </label>
-                <input type="text" class="form-control" id="username">
+                <input type="text" class="form-control" name="username" id="username">
               </div>
             <div class="mb-3">
                 <label for="email" class="form-label">Email Address: </label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" name="email" id="email">
               </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password: </label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" name="pass1" id="password">
               </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Repeat Password: </label>
-                <input type="password" class="form-control" id="password">
+                <input type="password" class="form-control" name="pass2" id="password">
               </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Sign Up</button>
+          <button type="submit" class="btn btn-primary">Sign Up</button>
         </div>
+      </form>
       </div>
     </div>
   </div>
