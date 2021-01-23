@@ -10,19 +10,24 @@ from django.contrib.auth.models import User
 def home(request):
 	return render(request, "index.html")
 
-def messages(request):
+def UserMessages(request):
 	if request.method == "POST":
 		userMessage = request.POST.get("message")
 		user = request.POST.get("user")
-		addMessage = message(user=user, message=userMessage)
-		addMessage.save()
-		return redirect("messages")
+		if len(userMessage) == 0:
+			messages.error(request, "Please Enter Message Text.")
+			return redirect("messages")
+		else:
+			addMessage = message(user=user, message=userMessage)
+			addMessage.save()
+			messages.success(request, "Your Message Has Been Added.")
+			return redirect("messages")
 
 	else:
 		allMessages = message.objects.all()
 		print(allMessages)
 		context = {
-		'messages': allMessages
+		'userMessages': allMessages
 		}
 		return render(request, "messages.html", context)
 
