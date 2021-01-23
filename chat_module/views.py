@@ -40,7 +40,7 @@ def signup(request):
 	else:
 		return HttpResponse("404 Not Found")
 
-def login(request):
+def handleLogin(request):
 	if request.method == "POST":
 		username = request.POST.get("username")
 		password = request.POST.get("password")
